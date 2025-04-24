@@ -30,13 +30,13 @@ class CommandProcessor:
                 if "summary" in json_response:
                     words = json_response["summary"]
                     print(f'words to speak {words}')
-                    self.speech_synthesizer.speak_words_v2(words)
+                    self.speech_synthesizer.speak_words_v3(words)
                 
             elif response.status_code == 404:
                 if "message" in json_response:
                     words = json_response["message"]
                     print(f'words to speak {words}')
-                    self.speech_synthesizer.speak_words_v2(words)
+                    self.speech_synthesizer.speak_words_v3(words)
         except:
             # If it's not JSON, print the raw text
             print(response.text)
@@ -51,7 +51,7 @@ class CommandProcessor:
         
         if is_speaker_command:
             print(f"Handled locally bc its a SPEAKER COMMAND: {response}")
-            self.speech_synthesizer.speak_words_v2(response)
+            self.speech_synthesizer.speak_words_v3(response)
             return
         
         # Not a speaker command, proceed with backend request
@@ -71,12 +71,12 @@ class CommandProcessor:
             if response.status_code == 200:
                 if "summary" in json_response:
                     words = json_response["summary"]
-                    self.speech_synthesizer.speak_words_v2(words)
+                    self.speech_synthesizer.speak_words_v3(words)
                 
             elif response.status_code == 404:
                 if "message" in json_response:
                     words = json_response["message"]
-                    self.speech_synthesizer.speak_words_v2(words)
+                    self.speech_synthesizer.speak_words_v3(words)
         except:
             # If it's not JSON, print the raw text
             print(response.text)    
