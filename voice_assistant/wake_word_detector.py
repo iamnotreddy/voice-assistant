@@ -1,4 +1,3 @@
-import shutil
 import os
 from pocketsphinx import Pocketsphinx
 import pyaudio
@@ -30,6 +29,7 @@ class WakeWordDetector:
 
         # Create directory if it doesn't exist
         dict_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dictionary")
+        
         if not os.path.exists(dict_dir):
             os.makedirs(dict_dir)
             

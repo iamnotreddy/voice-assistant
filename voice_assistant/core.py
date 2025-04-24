@@ -5,6 +5,7 @@ from .speech_recognizer import SpeechRecognizer
 from .speech_synthesizer import SpeechSynthesizer
 from .wake_word_detector import WakeWordDetector
 from .command_processor import CommandProcessor
+from .heos_controller import HeosController
 import pyaudio
 
 class VoiceAssistant:
@@ -23,6 +24,17 @@ class VoiceAssistant:
         self.speech_synthesizer = SpeechSynthesizer()
         self.command_processor = CommandProcessor(self.speech_synthesizer)
         self.wake_word_detector = WakeWordDetector(self.audio_manager, self.speech_recognizer, self.command_processor)  
+
+        # Initialize speaker controller
+        try:
+            # hard coded for now
+            self.speaker = HeosController('192.168.1.217')
+            self.command_processor.set_speaker(self.speaker)  # Set the speaker in command processor
+            print('set speaker in cmd processor')
+            print(f"Connected to Heos speaker at 192.168.1.217")
+        except Exception as e:
+            print(f"Speaker not available: {e}")
+            self.speaker = None
 
     def run(self):
         """Run the main application loop."""
