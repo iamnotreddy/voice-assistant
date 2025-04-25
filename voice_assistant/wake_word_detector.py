@@ -127,7 +127,7 @@ class WakeWordDetector:
                             print('processed command: ', command_text)
 
                             # make request
-                            self.command_processor.send_request(command_text)
+                            self.command_processor.process_command(command_text)
                             
                             print("\nListening for 'Hey Benito' again...")
                             

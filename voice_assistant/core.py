@@ -90,7 +90,7 @@ class VoiceAssistant:
                     
                     user_command_prompt = input()
 
-                    self.command_processor.send_mock_request(user_command_prompt)
+                    self.command_processor.process_command(user_command_prompt)
 
                     input("Press Enter to continue...")
                     
