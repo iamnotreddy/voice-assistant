@@ -5,3 +5,4 @@ temp_speech.wav
 output.wav
 piper-models/en_GB-semaine-medium.onnx
 piper-models/en_GB-semaine-medium.onnx.json
+vosk-model/
