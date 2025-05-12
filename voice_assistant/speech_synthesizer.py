@@ -1,6 +1,7 @@
 import os
 import wave
 from piper import PiperVoice
+import platform
 
 class SpeechSynthesizer:   
     def speak_words(self, text):
@@ -20,5 +21,11 @@ class SpeechSynthesizer:
             # Generate speech directly to the WAV file
             voice.synthesize(text, wav_file, length_scale=0.75)
         
-        # Play the audio using Mac's built-in player
-        os.system(f"afplay {temp_file}")
+        # Play the audio using current platform's built-in player
+        system = platform.system().lower()
+        if system == 'darwin':  # macOS
+            os.system(f"afplay {temp_file}")
+        elif system == 'linux':  # Linux/Raspberry Pi
+            os.system(f"aplay {temp_file}")
+        else:
+            print(f"Unsupported OS: {system}. Cannot play audio.")
